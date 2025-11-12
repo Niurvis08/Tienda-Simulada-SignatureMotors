@@ -1,0 +1,36 @@
+/* Reset y scroll */
+html, body {
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* Header hero */
+.header-hero {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+.header-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+/* Productos */
+#productsContainer .card {
+    margin-bottom: 1rem;
+}
+
+/* Modal imágenes */
+#detailImage {
+    object-fit: cover;
+}

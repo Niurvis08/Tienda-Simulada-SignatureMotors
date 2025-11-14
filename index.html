@@ -3,25 +3,30 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Signature motors - Tienda de Vehículos</title>
+    <title>Signature Motors - Tienda de Vehículos</title>
     <meta name="description" content="Signature Motors - Ecommerce simulado de vehículos" />
 
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- FontAwesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+
+    <!-- Estilos -->
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
+    <!-- HEADER -->
     <header class="sticky-top" role="banner">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Barra de navegación principal">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="#inicio">
-                    <i class="fas fa-car fa-lg me-2" aria-hidden="true"></i>
+                    <i class="fas fa-car fa-lg me-2"></i>
                     <span class="fw-bold">SignatureMotors</span>
                 </a>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
-                        aria-controls="mainNav" aria-expanded="false" aria-label="Alternar navegación">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -31,74 +36,78 @@
                         <li class="nav-item"><a class="nav-link" href="#vehiculos">Vehículos</a></li>
                     </ul>
 
-                    <form class="d-flex align-items-center" role="search" onsubmit="return false;">
-                        <label for="searchInput" class="visually-hidden">Buscar vehículos</label>
-                        <input id="searchInput" class="form-control me-2" type="search" placeholder="Buscar marca, modelo o categoría" aria-label="Buscar vehículos">
-                        <button class="btn btn-outline-light me-2" id="openCartBtn" type="button" aria-label="Abrir carrito" data-bs-toggle="modal" data-bs-target="#cartModal">
-                            <i class="fas fa-shopping-cart" aria-hidden="true"></i>
-                            <span id="cartCount" class="badge bg-danger ms-1" aria-live="polite">0</span>
+                    <form class="d-flex align-items-center" onsubmit="return false;">
+                        <input id="searchInput" class="form-control me-2" type="search" placeholder="Buscar marca o modelo">
+                        <button class="btn btn-outline-light me-2" id="openCartBtn" type="button" data-bs-toggle="modal" data-bs-target="#cartModal">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span id="cartCount" class="badge bg-danger ms-1">0</span>
                         </button>
                     </form>
                 </div>
             </div>
         </nav>
 
-        <div class="header-hero" role="img" aria-label="Imagen de fondo con vehículos">
-            <img src="https://t4.ftcdn.net/jpg/02/82/00/75/360_F_282007508_wdCUP7hUMNK1Cuzj7XmOcFmzyzJ0Nnp9.jpg" alt="Car background" />
+        <div class="header-hero">
+            <img src="https://t4.ftcdn.net/jpg/02/82/00/75/360_F_282007508_wdCUP7hUMNK1Cuzj7XmOcFmzyzJ0Nnp9.jpg" alt="Fondo de vehículos" />
             <div class="hero-text container">
                 <h1 class="display-5 text-white">Tu destino exclusivo para vehículos de alta gama</h1>
-                <p class="text-white lead">Explora lo exclusivo, Compara lo inteligente, Compra sin riesgos. — SignatureMtors</p>
+                <p class="text-white lead">Explora lo exclusivo, compara inteligente, compra sin riesgos.</p>
             </div>
         </div>
     </header>
 
-    <main id="main" class="mt-4" role="main">
-        <section id="inicio" class="container mb-5" aria-labelledby="welcomeTitle">
-            <h2 id="welcomeTitle" class="mb-3">Bienvenido a SignatureMotors</h2>
-            <p>La Experiencia VIP de compra: Selecciona y cotiza al instante.</p>
+    <!-- MAIN -->
+    <main id="main" class="mt-4">
+
+        <section id="inicio" class="container mb-5">
+            <h2 class="mb-3">Bienvenido a SignatureMotors</h2>
+            <p>La experiencia VIP de compra: selecciona y cotiza al instante.</p>
         </section>
 
-        <section id="vehiculos" class="container mb-5" aria-labelledby="vehiclesTitle">
-            <h2 id="vehiclesTitle" class="mb-4">Nuestros Vehículos</h2>
+        <section id="vehiculos" class="container mb-5">
+            <h2 class="mb-4">Nuestros Vehículos</h2>
 
-            <div id="loadingSpinner" class="d-flex justify-content-center my-25">
+            <!-- SPINNER -->
+            <div id="loadingSpinner" class="d-flex justify-content-center my-5">
                 <div class="spinner-border" role="status">
-                    <span class="visually-hidden">Cargando ...</span>
+                    <span class="visually-hidden">Cargando...</span>
                 </div>
             </div>
 
-            <div class="row" id="productsContainer"></div> 
+            <!-- Contenedor de vehículos -->
+            <div class="row" id="productsContainer"></div>
 
-            <div id="loadError" class="alert alert-danger mt-4 d-none" role="alert"></div>
+            <!-- Error -->
+            <div id="loadError" class="alert alert-danger mt-4 d-none"></div>
         </section>
     </main>
 
-    <footer class="bg-dark text-white py-3 mt-auto" role="contentinfo">
-        <div class="container d-flex justify-content-between align-items-center">
-            <small>© <span id="year"></span> GarageOnline. Todos los derechos reservados.</small>
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white py-3 mt-auto">
+        <div class="container d-flex justify-content-between">
+            <small>© <span id="year"></span> SignatureMotors. Todos los derechos reservados.</small>
             <small>Desarrollo accesible — WCAG AA</small>
         </div>
     </footer>
 
-    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+    <!-- MODAL DETALLE -->
+    <div class="modal fade" id="detailModal" tabindex="-1">
         <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="detailModalLabel">Detalle del vehículo</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar detalle"></button>
+                    <h5 class="modal-title">Detalle del vehículo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-7 mb-3">
-                                <img id="detailImage" src="" alt="Imagen del vehículo" class="img-fluid w-100" style="height:500px; object-fit:cover;">
-                            </div>
-                            <div class="col-md-5">
-                                <ul id="detailList" class="list-group mb-3"></ul>
-                                <div class="d-flex gap-2">
-                                    <button id="detailAddToCart" class="btn btn-primary" type="button">Añadir al carrito</button>
-                                    <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Cerrar</button>
-                                </div>
+                    <div class="row">
+                        <div class="col-md-7 mb-3">
+                            <img id="detailImage" class="img-fluid w-100" style="height:500px; object-fit:cover;">
+                        </div>
+                        <div class="col-md-5">
+                            <ul id="detailList" class="list-group mb-3"></ul>
+                            <div class="d-flex gap-2">
+                                <button id="detailAddToCart" class="btn btn-primary">Añadir al carrito</button>
+                                <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                             </div>
                         </div>
                     </div>
@@ -107,88 +116,99 @@
         </div>
     </div>
 
-    <div class="modal fade" id="quantityModal" tabindex="-1" aria-labelledby="quantityModalLabel" aria-hidden="true">
+    <!-- MODAL CANTIDAD -->
+    <div class="modal fade" id="quantityModal" tabindex="-1">
         <div class="modal-dialog modal-sm modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="quantityModalLabel">Cantidad</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar cantidad"></button>
+                    <h5 class="modal-title">Cantidad</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <label for="quantityInput" class="form-label">Cantidad a añadir</label>
-                    <input id="quantityInput" class="form-control" type="number" min="1" value="1" />
+                    <input id="quantityInput" class="form-control" type="number" min="1" value="1">
                 </div>
                 <div class="modal-footer">
-                    <button id="quantityCancelBtn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button id="addToCartBtn" type="button" class="btn btn-primary">Añadir al Carrito</button>
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button id="addToCartBtn" class="btn btn-primary">Añadir al carrito</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+    <!-- MODAL CARRITO -->
+    <div class="modal fade" id="cartModal" tabindex="-1">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="cartModalLabel">Tu Carrito</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar carrito"></button>
+                    <h5 class="modal-title">Tu carrito</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <div id="cartItems" class="mb-3" role="list"></div>
-                    <div class="d-flex justify-content-end align-items-center">
+                    <div id="cartItems" class="mb-3"></div>
+                    <div class="d-flex justify-content-end">
                         <h5 class="me-3">Total:</h5>
                         <h4 id="cartTotalElement" class="fw-bold">0</h4>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" data-bs-dismiss="modal">Seguir viendo vehículos</button>
-                    <button id="checkoutBtn" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#paymentModal" data-bs-dismiss="modal">Pagar</button>
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Seguir viendo</button>
+                    <button id="checkoutBtn" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#paymentModal" data-bs-dismiss="modal">Pagar</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+    <!-- MODAL PAGO -->
+    <div class="modal fade" id="paymentModal" tabindex="-1">
         <div class="modal-dialog modal-md modal-dialog-centered">
             <div class="modal-content">
+
                 <div class="modal-header">
-                    <h5 class="modal-title" id="paymentModalLabel">Formulario de Pago</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar pago"></button>
+                    <h5 class="modal-title">Formulario de Pago</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
+
                 <div class="modal-body">
-                    <form id="paymentForm" novalidate>
+                    <form id="paymentForm">
                         <div class="mb-3">
-                            <label for="payName" class="form-label">Nombre completo</label>
-                            <input id="payName" class="form-control" type="text" placeholder="Nombre completo" required />
+                            <label>Nombre completo</label>
+                            <input id="payName" class="form-control" required>
                         </div>
+
                         <div class="mb-3">
-                            <label for="payCard" class="form-label">Número de tarjeta</label>
-                            <input id="payCard" class="form-control" type="text" inputmode="numeric" placeholder="1111 2222 3333 4444" required />
+                            <label>Número de tarjeta</label>
+                            <input id="payCard" class="form-control" required>
                         </div>
+
                         <div class="row">
                             <div class="col-6 mb-3">
-                                <label for="payExp" class="form-label">Expiración</label>
-                                <input id="payExp" class="form-control" type="text" placeholder="MM/AA" required />
+                                <label>Expiración</label>
+                                <input id="payExp" class="form-control" required>
                             </div>
                             <div class="col-6 mb-3">
-                                <label for="payCvv" class="form-label">CVV</label>
-                                <input id="payCvv" class="form-control" type="text" inputmode="numeric" placeholder="123" required />
+                                <label>CVV</label>
+                                <input id="payCvv" class="form-control" required>
                             </div>
                         </div>
                     </form>
                 </div>
+
                 <div class="modal-footer">
                     <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button id="processPaymentBtn" type="button" class="btn btn-primary">Procesar Pago</button>
+                    <button id="processPaymentBtn" class="btn btn-primary">Procesar Pago</button>
                 </div>
             </div>
         </div>
     </div>
-    
+
+    <!-- JS PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    
+
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    
+
+    <!-- Tu JS -->
     <script src="script.js"></script>
+
 </body>
 </html>

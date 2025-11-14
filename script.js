@@ -31,9 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const yearSpan = document.getElementById('year');
   const paymentForm = document.getElementById('paymentForm');
 
-  // Modales Bootstrap
-  const bsQuantityModal = new bootstrap.Modal(quantityModalEl);
-  const bsDetailModal = new bootstrap.Modal(detailModalEl);
+  // Modales Bootstrap (usando getOrCreateInstance para compatibilidad en línea)
+  const bsQuantityModal = bootstrap.Modal.getOrCreateInstance(quantityModalEl);
+  const bsDetailModal = bootstrap.Modal.getOrCreateInstance(detailModalEl);
   const bsPaymentModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('paymentModal'));
 
 
@@ -46,28 +46,28 @@ document.addEventListener('DOMContentLoaded', () => {
   yearSpan.textContent = new Date().getFullYear();
 
   // -------------------- VEHÍCULOS EMBEBIDOS (20 alta gama) --------------------
-  // Se utiliza el JSON que proporcionaste con la estructura original.
+  // Rutas corregidas para usar IMÁGENES LOCALES.
   const VEHICLES_STATIC = [
-    { codigo: 'VM001', marca: 'Lamborghini', modelo: 'Huracán EVO', categoria: 'Deportivo', tipo: 'Coupe', precio_venta: 280000, imagen: 'https://images.unsplash.com/photo-1603386329225-868f9c20b76c?auto=format&fit=crop&w=1200&q=60' },
-    { codigo: 'VM002', marca: 'Ferrari', modelo: '812 Superfast', categoria: 'Deportivo', tipo: 'Coupe', precio_venta: 335000, imagen: 'https://images.unsplash.com/photo-1603386329291-94510cc1cbd5?auto=format&fit=crop&w=1200&q=60' },
-    { codigo: 'VM003', marca: 'Porsche', modelo: '911 Turbo S', categoria: 'Deportivo', tipo: 'Coupe', precio_venta: 220000, imagen: 'https://images.unsplash.com/photo-1618841509808-5e66e4ae79e2?auto=format&fit=crop&w=1200&q=60' },
-    { codigo: 'VM004', marca: 'Bentley', modelo: 'Continental GT', categoria: 'Lujo', tipo: 'Coupe', precio_venta: 240000, imagen: 'https://images.unsplash.com/photo-1617814076426-ae21b6a3e0e3?auto=format&fit=crop&w=1200&q=60' },
-    { codigo: 'VM005', marca: 'Rolls-Royce', modelo: 'Phantom', categoria: 'Lujo', tipo: 'Sedán', precio_venta: 455000, imagen: 'https://images.unsplash.com/photo-1617813174484-4e4d35e3f1ba?auto=format&fit=crop&w=1200&q=60' },
-    { codigo: 'VM006', marca: 'Aston Martin', modelo: 'DB11', categoria: 'Deportivo', tipo: 'Coupe', precio_venta: 200000, imagen: 'https://images.unsplash.com/photo-1603386321038-e5c51cae6afe?auto=format&fit=crop&w=1200&q=60' },
-    { codigo: 'VM007', marca: 'McLaren', modelo: '720S', categoria: 'Superdeportivo', tipo: 'Coupe', precio_venta: 300000, imagen: 'https://images.unsplash.com/photo-1617814076510-b34cce62d54b?auto=format&fit=crop&w=1200&q=60' },
-    { codigo: 'VM008', marca: 'Bugatti', modelo: 'Chiron', categoria: 'Hypercar', tipo: 'Coupe', precio_venta: 3000000, imagen: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1200&q=60' },
-    { codigo: 'VM009', marca: 'Mercedes-Benz', modelo: 'S-Class Maybach', categoria: 'Lujo', tipo: 'Sedán', precio_venta: 200000, imagen: 'https://images.unsplash.com/photo-1617814076619-fb811fc7ba34?auto=format&fit=crop&w=1200&q=60' },
-    { codigo: 'VM010', marca: 'BMW', modelo: 'M8 Competition', categoria: 'Deportivo', tipo: 'Coupe', precio_venta: 130000, imagen: 'https://images.unsplash.com/photo-1617814076626-740b93ebcb7d?auto=format&fit=crop&w=1200&q=60' },
-    { codigo: 'VM011', marca: 'Tesla', modelo: 'Model S Plaid', categoria: 'Eléctrico', tipo: 'Sedán', precio_venta: 120000, imagen: 'https://images.unsplash.com/photo-1617814076452-eb4f5bd2a96d?auto=format&fit=crop&w=1200&q=60' },
-    { codigo: 'VM012', marca: 'Audi', modelo: 'R8 V10', categoria: 'Deportivo', tipo: 'Coupe', precio_venta: 170000, imagen: 'https://images.unsplash.com/photo-1617814076518-8ad8752f4dd5?auto=format&fit=crop&w=1200&q=60' },
-    { codigo: 'VM013', marca: 'Jaguar', modelo: 'F-Type R', categoria: 'Deportivo', tipo: 'Coupe', precio_venta: 100000, imagen: 'https://images.unsplash.com/photo-1617814076578-5ae0e21978b9?auto=format&fit=crop&w=1200&q=60' },
-    { codigo: 'VM014', marca: 'Lexus', modelo: 'LC 500', categoria: 'Deportivo', tipo: 'Coupe', precio_venta: 95000, imagen: 'https://images.unsplash.com/photo-1617813076676-309b3debd4a5?auto=format&fit=crop&w=1200&q=60' },
-    { codigo: 'VM015', marca: 'Maserati', modelo: 'GranTurismo', categoria: 'Lujo', tipo: 'Coupe', precio_venta: 140000, imagen: 'https://images.unsplash.com/photo-1617813076505-67fa8ce28ed5?auto=format&fit=crop&w=1200&q=60' },
-    { codigo: 'VM016', marca: 'Koenigsegg', modelo: 'Agera RS', categoria: 'Hypercar', tipo: 'Coupe', precio_venta: 2500000, imagen: 'https://images.unsplash.com/photo-1617814076408-b6e2274fd51a?auto=format&fit=crop&w=1200&q=60' },
-    { codigo: 'VM017', marca: 'Bentley', modelo: 'Bentayga', categoria: 'SUV de lujo', tipo: 'SUV', precio_venta: 220000, imagen: 'https://images.unsplash.com/photo-1617813076447-824a1820e5c2?auto=format&fit=crop&w=1200&q=60' },
-    { codigo: 'VM018', marca: 'Porsche', modelo: 'Taycan Turbo S', categoria: 'Eléctrico', tipo: 'Sedán', precio_venta: 185000, imagen: 'https://images.unsplash.com/photo-1617814076468-50a6481d948e?auto=format&fit=crop&w=1200&q=60' },
-    { codigo: 'VM019', marca: 'BMW', modelo: 'i8', categoria: 'Híbrido', tipo: 'Coupe', precio_venta: 150000, imagen: 'https://images.unsplash.com/photo-1617814076526-4620f0f5508e?auto=format&fit=crop&w=1200&q=60' },
-    { codigo: 'VM020', marca: 'Ford', modelo: 'GT', categoria: 'Deportivo', tipo: 'Coupe', precio_venta: 500000, imagen: 'https://images.unsplash.com/photo-1617814076348-058ae114cf8e?auto=format&fit=crop&w=1200&q=60' }
+    { codigo: 'VM001', marca: 'Lamborghini', modelo: 'Huracán EVO', categoria: 'Deportivo', tipo: 'Coupe', precio_venta: 280000, imagen: 'https://th.bing.com/th/id/OIP.QnIrruvrSHj9AqZwHmBR4AHaE6?o=7&cb=ucfimg2rm=3&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3' },
+    { codigo: 'VM002', marca: 'Ferrari', modelo: '812 Superfast', categoria: 'Deportivo', tipo: 'Coupe', precio_venta: 335000, imagen: 'https://tse2.mm.bing.net/th/id/OIP.2SKMgxVWSXMfFv3uLGOm3AHaEK?cb=ucfimg2ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3' },
+    { codigo: 'VM003', marca: 'Porsche', modelo: '911 Turbo S', categoria: 'Deportivo', tipo: 'Coupe', precio_venta: 220000, imagen: 'https://tse3.mm.bing.net/th/id/OIP.qMtTF6AfiOkDsC9t-Z3Y-gHaEJ?cb=ucfimg2ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3' },
+    { codigo: 'VM004', marca: 'Bentley', modelo: 'Continental GT', categoria: 'Lujo', tipo: 'Coupe', precio_venta: 240000, imagen: 'https://tse3.mm.bing.net/th/id/OIP.D3ksSkEoHmwTmzh2S3vfWwHaFe?cb=ucfimg2ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3' },
+    { codigo: 'VM005', marca: 'Rolls-Royce', modelo: 'Phantom', categoria: 'Lujo', tipo: 'Sedán', precio_venta: 455000, imagen: 'https://tse1.mm.bing.net/th/id/OIP.JcuJcxJ3dnQBkcltagABrwHaEK?cb=ucfimg2ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3' },
+    { codigo: 'VM006', marca: 'Aston Martin', modelo: 'DB11', categoria: 'Deportivo', tipo: 'Coupe', precio_venta: 200000, imagen: 'https://tse1.mm.bing.net/th/id/OIP.Pzehto_UgpHPR5OKyPrzsAHaEK?cb=ucfimg2ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3' },
+    { codigo: 'VM007', marca: 'McLaren', modelo: '720S', categoria: 'Superdeportivo', tipo: 'Coupe', precio_venta: 300000, imagen: 'https://cdn.pixabay.com/photo/2017/05/16/11/20/mclaren-2317538_640.jpg' },
+    { codigo: 'VM008', marca: 'Bugatti', modelo: 'Chiron', categoria: 'Hypercar', tipo: 'Coupe', precio_venta: 3000000, imagen: 'https://tse4.mm.bing.net/th/id/OIP.1zgu4Xwq4BibcVmuSDsMHwHaE8?cb=ucfimg2ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3' },
+    { codigo: 'VM009', marca: 'Mercedes-Benz', modelo: 'S-Class Maybach', categoria: 'Lujo', tipo: 'Sedán', precio_venta: 200000, imagen: 'https://tse3.mm.bing.net/th/id/OIP.-rVRcrDrl5QcrhAb0ikm1wHaEK?cb=ucfimg2ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3' },
+    { codigo: 'VM010', marca: 'BMW', modelo: 'M8 Competition', categoria: 'Deportivo', tipo: 'Coupe', precio_venta: 130000, imagen: 'https://tse1.mm.bing.net/th/id/OIP.3jM3Is0CcpnqFHfiBXcZfQHaEK?cb=ucfimg2ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3' },
+    { codigo: 'VM011', marca: 'Tesla', modelo: 'Model S Plaid', categoria: 'Eléctrico', tipo: 'Sedán', precio_venta: 120000, imagen: 'https://tse2.mm.bing.net/th/id/OIP.VIRKeVtWTke9LfgdtGoBMwHaEK?cb=ucfimg2ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3' },
+    { codigo: 'VM012', marca: 'Audi', modelo: 'R8 V10', categoria: 'Deportivo', tipo: 'Coupe', precio_venta: 170000, imagen: 'https://tse2.mm.bing.net/th/id/OIP.xYLsiMFIN8t4UsZZ0LztNwHaEK?cb=ucfimg2ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3' },
+    { codigo: 'VM013', marca: 'Jaguar', modelo: 'F-Type R', categoria: 'Deportivo', tipo: 'Coupe', precio_venta: 100000, imagen: 'https://tse1.mm.bing.net/th/id/OIP.PumjgN00_IwScWC6taLVcwHaEK?cb=ucfimg2ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3' },
+    { codigo: 'VM014', marca: 'Lexus', modelo: 'LC 500', categoria: 'Deportivo', tipo: 'Coupe', precio_venta: 95000, imagen: 'https://tse2.mm.bing.net/th/id/OIP.YvtrgPo0tfF79LuRZk7yYQHaE8?cb=ucfimg2ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3' },
+    { codigo: 'VM015', marca: 'Maserati', modelo: 'GranTurismo', categoria: 'Lujo', tipo: 'Coupe', precio_venta: 140000, imagen: 'https://tse4.mm.bing.net/th/id/OIP.aoS7Vy0Iv0SLHlJjiwTfVQHaEo?cb=ucfimg2ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3' },
+    { codigo: 'VM016', marca: 'Koenigsegg', modelo: 'Agera RS', categoria: 'Hypercar', tipo: 'Coupe', precio_venta: 2500000, imagen: 'https://tse3.mm.bing.net/th/id/OIP.3zLA88YAUrJP0BjSxNQbpgHaE8?cb=ucfimg2ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3' },
+    { codigo: 'VM017', marca: 'Bentley', modelo: 'Bentayga', categoria: 'SUV de lujo', tipo: 'SUV', precio_venta: 220000, imagen: 'https://tse1.mm.bing.net/th/id/OIP.5tJxVudwwLCqew-yGumWoQHaE8?cb=ucfimg2ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3' },
+    { codigo: 'VM018', marca: 'Porsche', modelo: 'Taycan Turbo S', categoria: 'Eléctrico', tipo: 'Sedán', precio_venta: 185000, imagen: 'https://tse1.mm.bing.net/th/id/OIP.fzWceQkpd9ZUUoCxrrH1LAHaE8?cb=ucfimg2ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3' },
+    { codigo: 'VM019', marca: 'BMW', modelo: 'i8', categoria: 'Híbrido', tipo: 'Coupe', precio_venta: 150000, imagen: 'https://tse3.mm.bing.net/th/id/OIP.ElB94Y9MgcfW8pM7Vylk0wHaEK?cb=ucfimg2ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3' },
+    { codigo: 'VM020', marca: 'Ford', modelo: 'GT', categoria: 'Deportivo', tipo: 'Coupe', precio_venta: 500000, imagen: 'https://th.bing.com/th/id/R.45600f9abfd5de6ce133335ba8c38f05?rik=IQWtY2%2fiGEOBIg&riu=http%3a%2f%2fwww.pixelstalk.net%2fwp-content%2fuploads%2f2016%2f10%2fDesktop-HD-ford-gt-wallpaper-download.jpg&ehk=JxOVRURW2OHhxBhgGPwe7RB%2bvAW%2ftzrCBzT53QjWIXo%3d&risl=&pid=ImgRaw&r=0' }
   ];
 
   // -------------------- LOCALSTORAGE --------------------
@@ -85,7 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
   async function loadVehicles() {
     try {
       showSpinner(true);
-      // Simulación de retraso de red
       await new Promise(r => setTimeout(r, SIMULATED_LOAD_MS));
       
       vehiclesData = VEHICLES_STATIC.slice();
@@ -123,7 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const card = document.createElement('div');
       card.className = 'card h-100';
 
-      // Utilizamos el botón de imagen para abrir los detalles (Delegado)
       const imgWrapper = document.createElement('button');
       imgWrapper.className = 'btn p-0 border-0 viewDetailsBtn';
       imgWrapper.type = 'button';
@@ -223,7 +221,6 @@ document.addEventListener('DOMContentLoaded', () => {
     cartItemsContainer.innerHTML = '';
     let total = 0;
     const checkoutBtn = document.getElementById('checkoutBtn');
-    // Deshabilitar el botón de pagar si el carrito está vacío
     if (checkoutBtn) checkoutBtn.disabled = cart.length === 0;
 
     if (!cart.length) {
@@ -255,7 +252,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const actions = document.createElement('div');
       actions.className = 'd-flex gap-2 ms-3';
 
-      // Botones con data-codigo para manejo delegado
       const removeBtn = document.createElement('button');
       removeBtn.className = 'btn btn-sm btn-outline-danger removeCartItem';
       removeBtn.textContent = 'Eliminar';
@@ -318,7 +314,6 @@ document.addEventListener('DOMContentLoaded', () => {
     detailImage.src = vehicle.imagen || '';
     detailImage.alt = `${vehicle.marca} ${vehicle.modelo}`;
 
-    // Se añaden algunas propiedades de ejemplo para el listado de detalles
     detailList.innerHTML = `
       <li class="list-group-item"><strong>Marca:</strong> ${vehicle.marca}</li>
       <li class="list-group-item"><strong>Modelo:</strong> ${vehicle.modelo}</li>
@@ -371,6 +366,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 1. Manejo de clic para las tarjetas (delegación)
   productsContainer.addEventListener('click', (e) => {
+    // Usamos closest para asegurarnos de capturar el botón incluso si se hace clic en un hijo
     const target = e.target.closest('.addToCartBtn') || e.target.closest('.viewDetailsBtn');
     if (!target) return;
     
@@ -428,7 +424,7 @@ document.addEventListener('DOMContentLoaded', () => {
       changeQuantity(codigo, item.quantity + 1);
     } else if (target.classList.contains('decreaseQty')) {
       changeQuantity(codigo, item.quantity - 1);
-    } else if (target.classList.contains('removeCartItem')) { // Asegúrate de usar la clase correcta
+    } else if (target.classList.contains('removeCartItem')) {
       removeFromCart(codigo);
     }
   });
@@ -445,7 +441,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     generateReceiptPDF(name, total);
 
-    // Reset
+    // Resetear el estado
     cart = [];
     saveCartToStorage();
     updateCartUI();
